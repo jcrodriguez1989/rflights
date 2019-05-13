@@ -1,0 +1,18 @@
+Package: rflights
+Type: Package
+Title: Query plane tickets using the Kiwi API
+Version: 0.1.0
+Author: person("Juan Cruz", "Rodriguez", role = c("aut", "cre"), 
+               email = "jcrodriguez@unc.edu.ar")
+Maintainer: Juan Cruz Rodriguez <jcrodriguez@unc.edu.ar>
+Description: Query plane tickets, from several airlines, using the Kiwi API.
+    The API is documented at https://docs.kiwi.com/ .
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Imports:
+    httr,
+    methods
+RoxygenNote: 6.1.1
+Suggests: 
+    testthat
