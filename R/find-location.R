@@ -30,7 +30,7 @@
 #'
 find_location <- function(term, location_types = NA, locale = "en-US") {
   loc_types <- ""
-  if (length(location_types) > 0 && !is.na(location_types))
+  if (any(!is.na(location_types)))
     loc_types <- paste0("&location_types=", location_types, collapse = "")
 
   query_url <- paste0(
