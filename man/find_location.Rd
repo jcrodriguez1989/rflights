@@ -26,10 +26,12 @@ Get location ID depending on a query term using the
 [Kiwi API](https://docs.kiwi.com/).
 }
 \examples{
+\dontrun{
 cba_locs <- find_location("Cordoba", location_types = c("city", "airport"))
 # show some info of the found locations
 lapply(cba_locs, function(act_loc) {
   c(act_loc$name, act_loc$country$name)
 })
+}
 
 }

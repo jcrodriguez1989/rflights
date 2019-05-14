@@ -50,6 +50,7 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' # get Argentina and toulouse IDs
 #' arg_id <- find_location("Argentina", "country")[[1]]$id # AR
 #' tl_id <- find_location("toulouse", "city")[[1]]$id
@@ -57,6 +58,7 @@
 #' # get flights with no specified date
 #' flights <- get_flights(arg_id, tl_id)
 #' sapply(flights, function(x) x$price)
+#' }
 #'
 get_flights <- function(fly_from, fly_to = "anywhere",
                         date_from = Sys.Date(), date_to = date_from + 1,
