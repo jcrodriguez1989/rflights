@@ -2,8 +2,11 @@ Package: rflights
 Type: Package
 Title: Query Plane Tickets using the Kiwi API
 Version: 0.1.0
-Author: person("Juan Cruz", "Rodriguez", role = c("aut", "cre"), 
-               email = "jcrodriguez@unc.edu.ar")
+Authors@R: 
+    c(person(given = "Juan Cruz",
+             family = "Rodriguez",
+             role = c("aut", "cre"),
+             email = "jcrodriguez@unc.edu.ar"))
 Maintainer: Juan Cruz Rodriguez <jcrodriguez@unc.edu.ar>
 Description: Query plane tickets, from several airlines, using the Kiwi API
     (similar to Google Flights).
