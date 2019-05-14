@@ -5,7 +5,8 @@ Version: 0.1.0
 Author: person("Juan Cruz", "Rodriguez", role = c("aut", "cre"), 
                email = "jcrodriguez@unc.edu.ar")
 Maintainer: Juan Cruz Rodriguez <jcrodriguez@unc.edu.ar>
-Description: Query plane tickets, from several airlines, using the Kiwi API.
+Description: Query plane tickets, from several airlines, using the Kiwi API
+    (similar to Google Flights).
     The API is documented at https://docs.kiwi.com/ .
 License: GPL-3
 Encoding: UTF-8

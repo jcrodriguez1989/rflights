@@ -7,8 +7,8 @@ status](https://travis-ci.org/jcrodriguez1989/rflights.svg?branch=master)](https
 status](https://codecov.io/gh/jcrodriguez1989/rflights/branch/master/graph/badge.svg)](https://codecov.io/github/jcrodriguez1989/rflights?branch=master)
 [![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
 
-Query plane tickets, from several airlines, using the Kiwi API. The API
-is documented at <https://docs.kiwi.com/>.
+Query plane tickets, from several airlines, using the Kiwi API (similar
+to Google Flights). The API is documented at <https://docs.kiwi.com/>.
 
 ## Installation
 
@@ -128,7 +128,7 @@ flights <- get_flights(fly_from = "AR", fly_to = "toulouse_fr",
 length(flights)
 ```
 
-    ## [1] 91
+    ## [1] 111
 
 ``` r
 names(flights[[1]])
@@ -157,13 +157,13 @@ names(flights[[1]])
 sapply(flights, function(x) x$price)
 ```
 
-    ##  [1]  456  469  469  500  504  504  504  506  506  506  506  507  508  509
-    ## [15]  510  512  513  512  515  515  515  516  516  517  518  521  520  522
-    ## [29]  522  522  521  521  521  521  523  522  523  523  523  524  523  523
-    ## [43]  523  523  524  524  524  525  524  525  525  525  524  525  524  526
-    ## [57]  526  526  527  528  529  529  529  530  531  531  531  530  531  531
-    ## [71]  532  531  531  532  531  532  533  533  535  534  536  535  536  536
-    ## [85]  536  536  536  537  538  548 1417
+    ##   [1] 425 452 455 456 461 464 467 469 470 471 472 476 478 481 482 484 485
+    ##  [18] 485 492 493 494 494 495 498 498 497 499 502 502 504 504 504 505 505
+    ##  [35] 504 505 506 507 507 508 508 508 509 509 509 510 510 511 511 512 512
+    ##  [52] 513 512 512 512 513 514 513 514 513 513 514 514 515 515 515 515 516
+    ##  [69] 516 516 516 516 517 519 520 519 519 520 522 522 521 521 521 523 522
+    ##  [86] 523 523 523 524 523 523 524 524 525 525 525 525 526 526 526 527 528
+    ## [103] 529 529 530 532 534 562 594 620 677
 
 ## Examples
 
@@ -199,7 +199,7 @@ flights <- get_flights(fly_from = "COR",
 length(flights)
 ```
 
-    ## [1] 162
+    ## [1] 164
 
 ``` r
 head(t(sapply(flights, function(x) c(x$price, x$cityTo))), n = 20)
@@ -208,21 +208,21 @@ head(t(sapply(flights, function(x) c(x$price, x$cityTo))), n = 20)
     ##       [,1] [,2]                   
     ##  [1,] "26" "Salta"                
     ##  [2,] "26" "Salta"                
-    ##  [3,] "26" "Salta"                
+    ##  [3,] "25" "Salta"                
     ##  [4,] "26" "Salta"                
     ##  [5,] "26" "Salta"                
-    ##  [6,] "26" "Salta"                
+    ##  [6,] "29" "San Miguel de Tucumán"
     ##  [7,] "29" "San Miguel de Tucumán"
-    ##  [8,] "29" "San Miguel de Tucumán"
+    ##  [8,] "29" "Corrientes"           
     ##  [9,] "29" "Corrientes"           
-    ## [10,] "29" "Corrientes"           
-    ## [11,] "32" "Neuquén"              
+    ## [10,] "31" "Buenos Aires"         
+    ## [11,] "31" "Buenos Aires"         
     ## [12,] "32" "Neuquén"              
     ## [13,] "32" "Neuquén"              
     ## [14,] "32" "Neuquén"              
     ## [15,] "32" "Neuquén"              
-    ## [16,] "34" "San Miguel de Tucumán"
+    ## [16,] "32" "Neuquén"              
     ## [17,] "34" "San Miguel de Tucumán"
-    ## [18,] "35" "Buenos Aires"         
+    ## [18,] "34" "San Miguel de Tucumán"
     ## [19,] "35" "Buenos Aires"         
     ## [20,] "35" "Buenos Aires"
