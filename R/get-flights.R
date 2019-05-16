@@ -50,7 +50,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # get Argentina and toulouse IDs
 #' arg_id <- find_location("Argentina", "country")[[1]]$id # AR
 #' tl_id <- find_location("toulouse", "city")[[1]]$id

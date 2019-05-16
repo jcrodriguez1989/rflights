@@ -128,7 +128,7 @@ flights <- get_flights(fly_from = "AR", fly_to = "toulouse_fr",
 length(flights)
 ```
 
-    ## [1] 111
+    ## [1] 97
 
 ``` r
 names(flights[[1]])
@@ -147,23 +147,22 @@ names(flights[[1]])
     ## [21] "route"                         "routes"                       
     ## [23] "airlines"                      "nightsInDest"                 
     ## [25] "pnr_count"                     "transfers"                    
-    ## [27] "has_airport_change"            "fly_duration"                 
-    ## [29] "duration"                      "hashtags"                     
-    ## [31] "facilitated_booking_available" "conversion"                   
-    ## [33] "booking_token"                 "quality"                      
-    ## [35] "found_on"
+    ## [27] "has_airport_change"            "virtual_interlining"          
+    ## [29] "fly_duration"                  "duration"                     
+    ## [31] "hashtags"                      "facilitated_booking_available"
+    ## [33] "conversion"                    "booking_token"                
+    ## [35] "quality"                       "found_on"
 
 ``` r
 sapply(flights, function(x) x$price)
 ```
 
-    ##   [1] 425 452 455 456 461 464 467 469 470 471 472 476 478 481 482 484 485
-    ##  [18] 485 492 493 494 494 495 498 498 497 499 502 502 504 504 504 505 505
-    ##  [35] 504 505 506 507 507 508 508 508 509 509 509 510 510 511 511 512 512
-    ##  [52] 513 512 512 512 513 514 513 514 513 513 514 514 515 515 515 515 516
-    ##  [69] 516 516 516 516 517 519 520 519 519 520 522 522 521 521 521 523 522
-    ##  [86] 523 523 523 524 523 523 524 524 525 525 525 525 526 526 526 527 528
-    ## [103] 529 529 530 532 534 562 594 620 677
+    ##  [1] 456 499 499 501 504 504 506 506 506 507 508 508 509 509 511 512 514
+    ## [18] 514 515 514 514 514 517 520 520 521 522 522 522 524 524 524 525 524
+    ## [35] 524 526 527 527 527 527 526 527 528 529 530 531 532 531 531 533 534
+    ## [52] 534 534 534 534 536 536 536 536 537 537 536 537 537 538 538 538 538
+    ## [69] 537 538 539 539 540 540 540 540 540 541 542 542 541 541 541 543 542
+    ## [86] 542 544 544 554 621 681 719 721 720 724 728 740
 
 ## Examples
 
@@ -199,30 +198,30 @@ flights <- get_flights(fly_from = "COR",
 length(flights)
 ```
 
-    ## [1] 164
+    ## [1] 175
 
 ``` r
 head(t(sapply(flights, function(x) c(x$price, x$cityTo))), n = 20)
 ```
 
     ##       [,1] [,2]                   
-    ##  [1,] "26" "Salta"                
-    ##  [2,] "26" "Salta"                
+    ##  [1,] "25" "Salta"                
+    ##  [2,] "25" "Salta"                
     ##  [3,] "25" "Salta"                
-    ##  [4,] "26" "Salta"                
-    ##  [5,] "26" "Salta"                
+    ##  [4,] "25" "Salta"                
+    ##  [5,] "29" "San Miguel de Tucumán"
     ##  [6,] "29" "San Miguel de Tucumán"
     ##  [7,] "29" "San Miguel de Tucumán"
-    ##  [8,] "29" "Corrientes"           
+    ##  [8,] "29" "San Miguel de Tucumán"
     ##  [9,] "29" "Corrientes"           
     ## [10,] "31" "Buenos Aires"         
     ## [11,] "31" "Buenos Aires"         
-    ## [12,] "32" "Neuquén"              
-    ## [13,] "32" "Neuquén"              
-    ## [14,] "32" "Neuquén"              
-    ## [15,] "32" "Neuquén"              
-    ## [16,] "32" "Neuquén"              
-    ## [17,] "34" "San Miguel de Tucumán"
-    ## [18,] "34" "San Miguel de Tucumán"
-    ## [19,] "35" "Buenos Aires"         
-    ## [20,] "35" "Buenos Aires"
+    ## [12,] "31" "Buenos Aires"         
+    ## [13,] "31" "Buenos Aires"         
+    ## [14,] "31" "Buenos Aires"         
+    ## [15,] "31" "Buenos Aires"         
+    ## [16,] "31" "Buenos Aires"         
+    ## [17,] "31" "Buenos Aires"         
+    ## [18,] "31" "Buenos Aires"         
+    ## [19,] "31" "Buenos Aires"         
+    ## [20,] "31" "Buenos Aires"

@@ -22,7 +22,7 @@
 #' @export
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' cba_locs <- find_location("Cordoba", location_types = c("city", "airport"))
 #' # show some info of the found locations
 #' lapply(cba_locs, function(act_loc) {
