@@ -1,11 +1,12 @@
 ---
-title: "Basic usage example"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Basic usage example}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+# Basic usage example
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)

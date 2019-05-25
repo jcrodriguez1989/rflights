@@ -2,7 +2,7 @@
 #'
 #' Query flight prices using the [Kiwi API](https://docs.kiwi.com/).
 #'
-#' @param fly_from  ID of the departure location.
+#' @param fly_from ID of the departure location.
 #' It accepts multiple values separated by comma, these values might be airport
 #' codes, city IDs, two letter country codes, metropolitan codes and radiuses as
 #' well as subdivision, region, autonomous_territory, continent and specials
@@ -46,6 +46,7 @@
 #'
 #' @importFrom httr GET content
 #' @importFrom methods is
+#' @importFrom utils URLencode
 #'
 #' @export
 #'
@@ -77,10 +78,14 @@ get_flights <- function(fly_from, fly_to = "anywhere",
     return_to <- as.character(return_to, format = "%d/%m/%Y")
   }
 
+  # in the case fly_* are vectors
+  fly_from <- paste(fly_from, collapse = ",")
+  fly_to <- paste(fly_to, collapse = ",")
+
   query_url <- paste0(
     endpoint, "flights?",
-    "fly_from=", fly_from,
-    "&fly_to=", fly_to,
+    "fly_from=", URLencode(fly_from),
+    "&fly_to=", URLencode(fly_to),
     "&date_from=", date_from,
     "&date_to=", date_to,
     ifelse(is.na(return_from), "", paste0("&return_from=", return_from)),

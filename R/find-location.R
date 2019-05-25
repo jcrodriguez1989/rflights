@@ -18,6 +18,7 @@
 #' country, region, continent.
 #'
 #' @importFrom httr GET content
+#' @importFrom utils URLencode
 #'
 #' @export
 #'
@@ -32,12 +33,14 @@
 #'
 find_location <- function(term, location_types = NA, locale = "en-US") {
   loc_types <- ""
-  if (any(!is.na(location_types)))
-    loc_types <- paste0("&location_types=", location_types, collapse = "")
+  if (any(!is.na(location_types))) {
+    loc_types <- sapply(location_types, URLencode)
+    loc_types <- paste0("&location_types=", loc_types, collapse = "")
+  }
 
   query_url <- paste0(
     endpoint, "locations?",
-    "term=", term,
+    "term=", URLencode(term),
     "&locale=", locale,
     loc_types
   )
