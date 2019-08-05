@@ -84,7 +84,8 @@ get_flights <- function(fly_from, fly_to = "anywhere",
 
   query_url <- paste0(
     endpoint, "flights?",
-    "fly_from=", URLencode(fly_from),
+    "partner=picky",
+    "&fly_from=", URLencode(fly_from),
     "&fly_to=", URLencode(fly_to),
     "&date_from=", date_from,
     "&date_to=", date_to,
