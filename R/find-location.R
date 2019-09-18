@@ -5,8 +5,8 @@
 #'
 #' @param term searched term (for suggestions). This parameter expects a full
 #' IATA code. If IATA code is not given, the search will go through other
-#' available fields: ‘name’ or ‘code’ of the location. It also depends on the
-#' ‘location_types’ specified eg. airport, city, country. The search that is
+#' available fields: 'name' or 'code' of the location. It also depends on the
+#' 'location_types' specified eg. airport, city, country. The search that is
 #' used behind the scenes is elasticsearch. It returns data based on relevancy
 #' and many other factors.
 #'

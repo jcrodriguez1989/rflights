@@ -1,7 +1,7 @@
 Package: rflights
 Type: Package
 Title: Query Plane Tickets using the 'Kiwi' API
-Version: 0.1.102
+Version: 0.1.103
 Authors@R: 
     c(person(given = "Juan Cruz",
              family = "Rodriguez",

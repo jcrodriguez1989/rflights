@@ -46,7 +46,7 @@ tl_id
 
 ```{r, eval = FALSE}
 # get flights from Argentina to toulouse around 01 July to 09 July
-# Maybe I can go to the user2019 🤔??
+# Maybe I can go to the useR! 2019?
 flights <- get_flights(
   fly_from = "AR", fly_to = "toulouse_fr",
   date_from = "01/09/2019", date_to = "09/09/2019"
@@ -63,8 +63,7 @@ sapply(flights, function(x) x$price)
 I used it to alert through a [Pushbullet](https://www.pushbullet.com/) message.
 
 ```{r, eval = FALSE}
-my_savings <- 25 # yup, just 25USD 😣
-found_ticket <- FALSE
+my_savings <- 25 # yup, just 25USD ound_ticket <- FALSE
 while (!found_ticket) {
   flights <- get_flights(
     fly_from = "AR", fly_to = "toulouse_fr",

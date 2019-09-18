@@ -17,14 +17,15 @@ The API is documented at <https://docs.kiwi.com/>.
 You can install the `rflights` package from CRAN:
 
 ``` r
-install.packages("rflights") 
+install.packages("rflights")
 ```
 
 Or get the latest version from GitHub:
 
 ``` r
-if (!require("remotes"))
+if (!require("remotes")) {
   install.packages("remotes")
+}
 remotes::install_github("jcrodriguez1989/rflights")
 ```
 
@@ -81,10 +82,10 @@ tl_id <- find_location("toulouse")
 length(tl_id)
 ```
 
-    ## [1] 4
+    ## [1] 5
 
 ``` r
-lapply(tl_id, function (x) x$type)
+lapply(tl_id, function(x) x$type)
 ```
 
     ## [[1]]
@@ -98,10 +99,13 @@ lapply(tl_id, function (x) x$type)
     ## 
     ## [[4]]
     ## [1] "tourist_region"
+    ## 
+    ## [[5]]
+    ## [1] "bus_station"
 
 ``` r
 # we are looking for the city
-tl_id <- tl_id[[which(sapply(tl_id, function (x) x$type == "city"))]]
+tl_id <- tl_id[[which(sapply(tl_id, function(x) x$type == "city"))]]
 tl_id$country
 ```
 
@@ -128,47 +132,15 @@ tl_id
 
 ``` r
 # get flights from Argentina to toulouse around 01 July to 09 July
-# Maybe I can go to the user2019 🤔??
-flights <- get_flights(fly_from = "AR", fly_to = "toulouse_fr",
-                       date_from = "01/09/2019", date_to = "09/09/2019")
+# Maybe I can go to the user2019??
+flights <- get_flights(
+  fly_from = "AR", fly_to = "toulouse_fr",
+  date_from = "01/09/2019", date_to = "09/09/2019"
+)
 length(flights)
-```
-
-    ## [1] 99
-
-``` r
 names(flights[[1]])
-```
-
-    ##  [1] "id"                            "countryFrom"                  
-    ##  [3] "countryTo"                     "bags_price"                   
-    ##  [5] "baglimit"                      "dTime"                        
-    ##  [7] "aTime"                         "dTimeUTC"                     
-    ##  [9] "p1"                            "p2"                           
-    ## [11] "p3"                            "aTimeUTC"                     
-    ## [13] "price"                         "flyFrom"                      
-    ## [15] "mapIdfrom"                     "mapIdto"                      
-    ## [17] "flyTo"                         "distance"                     
-    ## [19] "cityFrom"                      "cityTo"                       
-    ## [21] "route"                         "routes"                       
-    ## [23] "airlines"                      "nightsInDest"                 
-    ## [25] "pnr_count"                     "transfers"                    
-    ## [27] "has_airport_change"            "virtual_interlining"          
-    ## [29] "fly_duration"                  "duration"                     
-    ## [31] "hashtags"                      "facilitated_booking_available"
-    ## [33] "conversion"                    "booking_token"                
-    ## [35] "quality"                       "found_on"
-
-``` r
 sapply(flights, function(x) x$price)
 ```
-
-    ##  [1] 455 472 498 500 500 503 503 502 506 507 507 508 509 510 509 512 512
-    ## [18] 513 512 513 513 515 516 516 517 517 518 520 520 522 522 521 523 522
-    ## [35] 522 523 524 525 525 525 526 526 526 527 527 529 529 529 530 530 531
-    ## [52] 531 531 532 532 532 533 533 533 533 534 536 535 536 537 536 538 538
-    ## [69] 539 539 540 539 540 539 539 539 541 541 540 540 541 540 540 540 541
-    ## [86] 541 542 541 543 543 542 543 543 543 543 544 544 606 675
 
 ## Examples
 
@@ -178,16 +150,19 @@ I used it to alert through a [Pushbullet](https://www.pushbullet.com/)
 message.
 
 ``` r
-my_savings <- 25 # yup, just 25USD 😣
+my_savings <- 25 # yup, just 25USD
 found_ticket <- FALSE
 while (!found_ticket) {
-  flights <- get_flights(fly_from = "AR", fly_to = "toulouse_fr",
-                         date_from = "01/09/2019", date_to = "09/09/2019")
+  flights <- get_flights(
+    fly_from = "AR", fly_to = "toulouse_fr",
+    date_from = "01/09/2019", date_to = "09/09/2019"
+  )
   flights <- flights[sapply(flights, function(x) x$price) <= my_savings]
   if (length(flights) > 0) {
     send_alert(paste0(
       "There is a plane ticket you can afford!\n",
-      "Check it out at Kiwi.com"))
+      "Check it out at Kiwi.com"
+    ))
     # user-defined alert function (not in rflights)
   }
 }
@@ -199,35 +174,37 @@ Find plane tickets from my city to anywhere, from today to 2 next weeks.
 
 ``` r
 # I am a freelancer, let's go anywhere!
-flights <- get_flights(fly_from = "COR",
-                       date_from = Sys.Date(), date_to = Sys.Date()+2*7)
+flights <- get_flights(
+  fly_from = "GNV",
+  date_from = Sys.Date(), date_to = Sys.Date() + 2 * 7
+)
 length(flights)
 ```
 
-    ## [1] 177
+    ## [1] 99
 
 ``` r
 head(t(sapply(flights, function(x) c(x$price, x$cityTo))), n = 20)
 ```
 
-    ##       [,1] [,2]                   
-    ##  [1,] "26" "Salta"                
-    ##  [2,] "26" "Salta"                
-    ##  [3,] "26" "Salta"                
-    ##  [4,] "29" "San Miguel de Tucumán"
-    ##  [5,] "29" "San Miguel de Tucumán"
-    ##  [6,] "29" "San Miguel de Tucumán"
-    ##  [7,] "29" "San Miguel de Tucumán"
-    ##  [8,] "29" "Buenos Aires"         
-    ##  [9,] "29" "Buenos Aires"         
-    ## [10,] "29" "Buenos Aires"         
-    ## [11,] "29" "Buenos Aires"         
-    ## [12,] "29" "Buenos Aires"         
-    ## [13,] "29" "Buenos Aires"         
-    ## [14,] "29" "Buenos Aires"         
-    ## [15,] "29" "Buenos Aires"         
-    ## [16,] "29" "Buenos Aires"         
-    ## [17,] "29" "Buenos Aires"         
-    ## [18,] "29" "Buenos Aires"         
-    ## [19,] "29" "Corrientes"           
-    ## [20,] "31" "Buenos Aires"
+    ##       [,1]  [,2]              
+    ##  [1,] "91"  "Nashville"       
+    ##  [2,] "91"  "Norfolk"         
+    ##  [3,] "91"  "Nashville"       
+    ##  [4,] "94"  "Pittsburgh"      
+    ##  [5,] "112" "Raleigh"         
+    ##  [6,] "122" "Washington, D.C."
+    ##  [7,] "123" "Boston"          
+    ##  [8,] "123" "Orlando"         
+    ##  [9,] "124" "Philadelphia"    
+    ## [10,] "124" "Cleveland"       
+    ## [11,] "124" "Providence"      
+    ## [12,] "125" "Indianapolis"    
+    ## [13,] "126" "Las Vegas"       
+    ## [14,] "128" "Chicago"         
+    ## [15,] "130" "Indianapolis"    
+    ## [16,] "132" "Nashville"       
+    ## [17,] "137" "Indianapolis"    
+    ## [18,] "137" "Orlando"         
+    ## [19,] "139" "Miami"           
+    ## [20,] "140" "Philadelphia"
