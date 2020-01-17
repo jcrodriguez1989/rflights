@@ -5,7 +5,8 @@ R Flights
 status](https://travis-ci.org/jcrodriguez1989/rflights.svg?branch=master)](https://travis-ci.org/jcrodriguez1989/rflights)
 [![Coverage
 status](https://codecov.io/gh/jcrodriguez1989/rflights/branch/master/graph/badge.svg)](https://codecov.io/github/jcrodriguez1989/rflights?branch=master)
-[![lifecycle](https://img.shields.io/badge/lifecycle-maturing-blue.svg)](https://www.tidyverse.org/lifecycle/#maturing)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 Query plane tickets, from several airlines, using the Kiwi API (similar
 to Google Flights).
@@ -48,10 +49,11 @@ names(arg_id)
 ```
 
     ##  [1] "id"                "active"            "code"             
-    ##  [4] "name"              "slug"              "alternative_names"
-    ##  [7] "rank"              "global_rank_dst"   "neighbours"       
-    ## [10] "organizations"     "currency"          "region"           
-    ## [13] "continent"         "location"          "type"
+    ##  [4] "code_alpha_3"      "name"              "slug"             
+    ##  [7] "alternative_names" "rank"              "global_rank_dst"  
+    ## [10] "neighbours"        "organizations"     "currency"         
+    ## [13] "region"            "continent"         "location"         
+    ## [16] "type"
 
 ``` r
 arg_id$id
@@ -181,30 +183,30 @@ flights <- get_flights(
 length(flights)
 ```
 
-    ## [1] 99
+    ## [1] 226
 
 ``` r
 head(t(sapply(flights, function(x) c(x$price, x$cityTo))), n = 20)
 ```
 
-    ##       [,1]  [,2]              
-    ##  [1,] "91"  "Nashville"       
-    ##  [2,] "91"  "Norfolk"         
-    ##  [3,] "91"  "Nashville"       
-    ##  [4,] "94"  "Pittsburgh"      
-    ##  [5,] "112" "Raleigh"         
-    ##  [6,] "122" "Washington, D.C."
-    ##  [7,] "123" "Boston"          
-    ##  [8,] "123" "Orlando"         
-    ##  [9,] "124" "Philadelphia"    
-    ## [10,] "124" "Cleveland"       
-    ## [11,] "124" "Providence"      
-    ## [12,] "125" "Indianapolis"    
-    ## [13,] "126" "Las Vegas"       
-    ## [14,] "128" "Chicago"         
-    ## [15,] "130" "Indianapolis"    
-    ## [16,] "132" "Nashville"       
-    ## [17,] "137" "Indianapolis"    
-    ## [18,] "137" "Orlando"         
-    ## [19,] "139" "Miami"           
-    ## [20,] "140" "Philadelphia"
+    ##       [,1]  [,2]       
+    ##  [1,] "146" "New York" 
+    ##  [2,] "146" "New York" 
+    ##  [3,] "149" "New York" 
+    ##  [4,] "149" "New York" 
+    ##  [5,] "165" "New York" 
+    ##  [6,] "165" "New York" 
+    ##  [7,] "165" "New York" 
+    ##  [8,] "166" "New York" 
+    ##  [9,] "167" "New York" 
+    ## [10,] "167" "New York" 
+    ## [11,] "167" "Orlando"  
+    ## [12,] "168" "Orlando"  
+    ## [13,] "171" "Orlando"  
+    ## [14,] "171" "Orlando"  
+    ## [15,] "171" "Orlando"  
+    ## [16,] "171" "Orlando"  
+    ## [17,] "173" "New York" 
+    ## [18,] "173" "Orlando"  
+    ## [19,] "173" "Las Vegas"
+    ## [20,] "174" "New York"
