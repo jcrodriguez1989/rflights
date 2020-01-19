@@ -1,12 +1,16 @@
 R Flights
 ================
 
+[![CRAN
+status](https://www.r-pkg.org/badges/version/rflights)](https://CRAN.R-project.org/package=rflights)
+[![CRAN
+logs](https://cranlogs.r-pkg.org/badges/rflights)](https://cran.r-project.org/package=rflights)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 [![Travis build
 status](https://travis-ci.org/jcrodriguez1989/rflights.svg?branch=master)](https://travis-ci.org/jcrodriguez1989/rflights)
 [![Coverage
 status](https://codecov.io/gh/jcrodriguez1989/rflights/branch/master/graph/badge.svg)](https://codecov.io/github/jcrodriguez1989/rflights?branch=master)
-[![Lifecycle:
-stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 
 Query plane tickets, from several airlines, using the Kiwi API (similar
 to Google Flights).
@@ -183,30 +187,30 @@ flights <- get_flights(
 length(flights)
 ```
 
-    ## [1] 226
+    ## [1] 235
 
 ``` r
 head(t(sapply(flights, function(x) c(x$price, x$cityTo))), n = 20)
 ```
 
     ##       [,1]  [,2]       
-    ##  [1,] "146" "New York" 
-    ##  [2,] "146" "New York" 
-    ##  [3,] "149" "New York" 
-    ##  [4,] "149" "New York" 
-    ##  [5,] "165" "New York" 
-    ##  [6,] "165" "New York" 
-    ##  [7,] "165" "New York" 
-    ##  [8,] "166" "New York" 
-    ##  [9,] "167" "New York" 
-    ## [10,] "167" "New York" 
-    ## [11,] "167" "Orlando"  
-    ## [12,] "168" "Orlando"  
-    ## [13,] "171" "Orlando"  
-    ## [14,] "171" "Orlando"  
-    ## [15,] "171" "Orlando"  
-    ## [16,] "171" "Orlando"  
-    ## [17,] "173" "New York" 
-    ## [18,] "173" "Orlando"  
-    ## [19,] "173" "Las Vegas"
-    ## [20,] "174" "New York"
+    ##  [1,] "148" "New York" 
+    ##  [2,] "150" "New York" 
+    ##  [3,] "167" "New York" 
+    ##  [4,] "170" "Orlando"  
+    ##  [5,] "170" "Orlando"  
+    ##  [6,] "170" "Orlando"  
+    ##  [7,] "170" "Orlando"  
+    ##  [8,] "175" "Orlando"  
+    ##  [9,] "176" "Las Vegas"
+    ## [10,] "183" "Orlando"  
+    ## [11,] "183" "Las Vegas"
+    ## [12,] "185" "New York" 
+    ## [13,] "185" "New York" 
+    ## [14,] "185" "New York" 
+    ## [15,] "186" "Orlando"  
+    ## [16,] "189" "Orlando"  
+    ## [17,] "190" "Miami"    
+    ## [18,] "190" "Miami"    
+    ## [19,] "190" "New York" 
+    ## [20,] "191" "Las Vegas"

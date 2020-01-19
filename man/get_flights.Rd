@@ -4,10 +4,18 @@
 \alias{get_flights}
 \title{Query flight prices.}
 \usage{
-get_flights(fly_from, fly_to = "anywhere", date_from = Sys.Date(),
-  date_to = date_from + 1, return_from = NA, return_to = NA,
-  curr = "USD", price_from = NA, price_to = NA,
-  other_params = list())
+get_flights(
+  fly_from,
+  fly_to = "anywhere",
+  date_from = Sys.Date(),
+  date_to = date_from + 1,
+  return_from = NA,
+  return_to = NA,
+  curr = "USD",
+  price_from = NA,
+  price_to = NA,
+  other_params = list()
+)
 }
 \arguments{
 \item{fly_from}{ID of the departure location.
