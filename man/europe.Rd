@@ -4,7 +4,8 @@
 \name{europe}
 \alias{europe}
 \title{Continents' countries.}
-\format{A data frame with three variables:
+\format{
+A data frame with three variables:
 \describe{
   \item{\code{africa}}{codes of countries in Africa}
   \item{\code{asia}}{codes of countries in Asia}
@@ -12,7 +13,8 @@
   \item{\code{north_america}}{codes of countries in North America}
   \item{\code{oceania}}{codes of countries in Oceania}
   \item{\code{south_america}}{codes of countries in South America}
-}}
+}
+}
 \usage{
 europe
 }

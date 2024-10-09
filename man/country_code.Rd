@@ -4,12 +4,14 @@
 \name{country_code}
 \alias{country_code}
 \title{Country code.}
-\format{A data frame with three variables:
+\format{
+A data frame with three variables:
 \describe{
 \item{\code{name}}{country name}
 \item{\code{code}}{country code to use as \code{fly_from} and \code{fly_to}}
 \item{\code{continent}}{continent name}
-}}
+}
+}
 \usage{
 country_code
 }

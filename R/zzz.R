@@ -1,1 +1,1 @@
-endpoint <- "https://api.skypicker.com/"
+api_url <- "https://api.skypicker.com/umbrella/v2/graphql"

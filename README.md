@@ -41,137 +41,68 @@ remotes::install_github("jcrodriguez1989/rflights")
 ``` r
 library("rflights")
 # get Argentina and toulouse IDs
-arg_id <- find_location("Argentina", "country")
-length(arg_id) # only one result, so it might be the one
+arg_id <- find_location("Argentina", "COUNTRY")$node
+nrow(arg_id) # only one result, so it might be the one
 ```
 
     ## [1] 1
 
 ``` r
-arg_id <- arg_id[[1]]
-names(arg_id)
+colnames(arg_id)
 ```
 
-    ##  [1] "id"                "active"            "code"             
-    ##  [4] "code_alpha_3"      "name"              "slug"             
-    ##  [7] "alternative_names" "rank"              "global_rank_dst"  
-    ## [10] "neighbours"        "organizations"     "currency"         
-    ## [13] "region"            "continent"         "location"         
-    ## [16] "type"
+    ##  [1] "typename" "isPlace"  "id"       "legacyId" "name"     "slug"    
+    ##  [7] "slugEn"   "gps"      "rank"     "code"     "region"
 
 ``` r
 arg_id$id
 ```
 
-    ## [1] "AR"
+    ## [1] "Country:AR"
 
 ``` r
-arg_id$continent
+arg_id$region$continent$id
 ```
 
-    ## $id
-    ## [1] "south-america"
-    ## 
-    ## $code
-    ## [1] "SA"
-    ## 
-    ## $name
-    ## [1] "South America"
-    ## 
-    ## $slug
-    ## [1] "south-america"
+    ## [1] "Continent:south-america"
 
 ``` r
 arg_id <- arg_id$id
 
-tl_id <- find_location("toulouse")
-length(tl_id)
+tl_id <- find_location("toulouse")$node
+nrow(tl_id)
 ```
 
-    ## [1] 5
+    ## [1] 3
 
 ``` r
-lapply(tl_id, function(x) x$type)
+tl_id$typename
 ```
 
-    ## [[1]]
-    ## [1] "city"
-    ## 
-    ## [[2]]
-    ## [1] "airport"
-    ## 
-    ## [[3]]
-    ## [1] "bus_station"
-    ## 
-    ## [[4]]
-    ## [1] "tourist_region"
-    ## 
-    ## [[5]]
-    ## [1] "bus_station"
+    ## [1] "City"          "Station"       "TouristRegion"
 
 ``` r
 # we are looking for the city
-tl_id <- tl_id[[which(sapply(tl_id, function(x) x$type == "city"))]]
-tl_id$country
+tl_id <- tl_id[tl_id$typename == "City", ]
+tl_id$country$name
 ```
 
-    ## $id
-    ## [1] "FR"
-    ## 
-    ## $name
     ## [1] "France"
-    ## 
-    ## $slug
-    ## [1] "france"
-    ## 
-    ## $code
-    ## [1] "FR"
 
 ``` r
 tl_id <- tl_id$id
-tl_id
 ```
-
-    ## [1] "toulouse_fr"
 
 ### Get flight prices
 
 ``` r
-# get flights from Argentina to toulouse around 01 July to 09 July
-# Maybe I can go to the user2019??
+# get flights from Argentina to toulouse for this month
 flights <- get_flights(
-  fly_from = "AR", fly_to = "toulouse_fr",
-  date_from = "01/09/2019", date_to = "09/09/2019"
+  fly_from = "Country:AR", fly_to = "City:toulouse_fr",
+  departure_from = Sys.Date(), departure_to = Sys.Date() + 30
 )
-length(flights)
-names(flights[[1]])
-sapply(flights, function(x) x$price)
-```
-
-## Examples
-
-### Create flight price alarms
-
-I used it to alert through a [Pushbullet](https://www.pushbullet.com/)
-message.
-
-``` r
-my_savings <- 25 # yup, just 25USD
-found_ticket <- FALSE
-while (!found_ticket) {
-  flights <- get_flights(
-    fly_from = "AR", fly_to = "toulouse_fr",
-    date_from = "01/09/2019", date_to = "09/09/2019"
-  )
-  flights <- flights[sapply(flights, function(x) x$price) <= my_savings]
-  if (length(flights) > 0) {
-    send_alert(paste0(
-      "There is a plane ticket you can afford!\n",
-      "Check it out at Kiwi.com"
-    ))
-    # user-defined alert function (not in rflights)
-  }
-}
+nrow(flights$itineraries)
+head(flights$itineraries$price$amount)
 ```
 
 ### Fly to anywhere
@@ -179,38 +110,34 @@ while (!found_ticket) {
 Find plane tickets from my city to anywhere, from today to 2 next weeks.
 
 ``` r
-# I am a freelancer, let's go anywhere!
-flights <- get_flights(
-  fly_from = "GNV",
-  date_from = Sys.Date(), date_to = Sys.Date() + 2 * 7
+# I am a nomad, let's go anywhere!
+flights <- search_flights(
+  fly_from = "Country:AR",
+  departure_from = Sys.Date(), departure_to = Sys.Date() + 2 * 7
 )
-length(flights)
+nrow(flights$itineraries)
 ```
 
-    ## [1] 235
+    ## [1] 53
 
 ``` r
-head(t(sapply(flights, function(x) c(x$price, x$cityTo))), n = 20)
+head(data.frame(
+  from = flights$itineraries$source$station$name, to = flights$itineraries$destination$station$name,
+  price = flights$itineraries$price$amount
+))
 ```
 
-    ##       [,1]  [,2]       
-    ##  [1,] "148" "New York" 
-    ##  [2,] "150" "New York" 
-    ##  [3,] "167" "New York" 
-    ##  [4,] "170" "Orlando"  
-    ##  [5,] "170" "Orlando"  
-    ##  [6,] "170" "Orlando"  
-    ##  [7,] "170" "Orlando"  
-    ##  [8,] "175" "Orlando"  
-    ##  [9,] "176" "Las Vegas"
-    ## [10,] "183" "Orlando"  
-    ## [11,] "183" "Las Vegas"
-    ## [12,] "185" "New York" 
-    ## [13,] "185" "New York" 
-    ## [14,] "185" "New York" 
-    ## [15,] "186" "Orlando"  
-    ## [16,] "189" "Orlando"  
-    ## [17,] "190" "Miami"    
-    ## [18,] "190" "Miami"    
-    ## [19,] "190" "New York" 
-    ## [20,] "191" "Las Vegas"
+    ##                                                          from
+    ## 1                            Ministro Pistarini International
+    ## 2                            Ministro Pistarini International
+    ## 3                            Ministro Pistarini International
+    ## 4 Ingeniero Aeronáutico Ambrosio L.V. Taravella International
+    ## 5                            Ministro Pistarini International
+    ## 6                            Ministro Pistarini International
+    ##                              to price
+    ## 1 John F. Kennedy International   414
+    ## 2                       Gatwick   559
+    ## 3             Barcelona–El Prat   554
+    ## 4  Adolfo Suárez Madrid–Barajas   462
+    ## 5          Narita International   832
+    ## 6     Charles de Gaulle Airport   560

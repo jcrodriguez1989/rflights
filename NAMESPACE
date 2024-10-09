@@ -2,7 +2,8 @@
 
 export(find_location)
 export(get_flights)
-importFrom(httr,GET)
+export(search_flights)
+importFrom(httr,RETRY)
 importFrom(httr,content)
-importFrom(methods,is)
-importFrom(utils,URLencode)
+importFrom(httr,content_type_json)
+importFrom(jsonlite,toJSON)
