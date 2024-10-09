@@ -1,14 +1,11 @@
-library("rflights")
-library("usethis")
-
 country_code <- rflights::country_code
 by_continent <- by(country_code$code, country_code$continent, identity)
-africa <- as.character(by_continent[["Africa"]])
-asia <- as.character(by_continent[["Asia"]])
-europe <- as.character(by_continent[["Europe"]])
-north_america <- as.character(by_continent[["North America"]])
-oceania <- as.character(by_continent[["Oceania"]])
-south_america <- as.character(by_continent[["South America"]])
+africa <- as.character(by_continent[["africa"]])
+asia <- as.character(by_continent[["asia"]])
+europe <- as.character(by_continent[["europe"]])
+north_america <- as.character(by_continent[["north-america"]])
+oceania <- as.character(by_continent[["oceania"]])
+south_america <- as.character(by_continent[["south-america"]])
 
 # add data.frame to package
 usethis::use_data(africa, overwrite = TRUE)

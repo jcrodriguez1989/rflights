@@ -20,11 +20,11 @@ Depends:
     R (>= 2.10)
 Imports:
     httr,
-    methods
+    jsonlite
 Suggests: 
     testthat,
     covr,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.2.3
