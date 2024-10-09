@@ -20,7 +20,7 @@
 #' @export
 #'
 search_flights <- function(fly_from, fly_to = "anywhere", departure_from = NULL,
-                           departure_to = NULL, sort_by = "PRICE", passengers = NULL,
+                           departure_to = NULL, sort_by = "POPULARITY", passengers = NULL,
                            cabin_class = NULL) {
   if (is.null(passengers)) {
     passengers <- list(
