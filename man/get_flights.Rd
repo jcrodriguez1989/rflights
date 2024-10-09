@@ -9,7 +9,8 @@ get_flights(
   fly_to = "anywhere",
   departure_from = NULL,
   departure_to = NULL,
-  sort_by = "PRICE",
+  sort_by = "QUALITY",
+  price_range = NULL,
   passengers = NULL,
   cabin_class = NULL
 )
@@ -25,6 +26,8 @@ get_flights(
 \item{departure_to}{search flights up to this datetime. If `NULL`, anytime.}
 
 \item{sort_by}{one of "POPULARITY", "PRICE", or "QUALITY".}
+
+\item{price_range}{a list with values `min` and/or `max`, setting the price ranges.}
 
 \item{passengers}{If `NULL`, it will use the default: `list(adults = 1, children = 0,`
 `infants = 0, adultsHoldBags = 0, adultsHandBags = 0, childrenHoldBags = list(),`

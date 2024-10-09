@@ -8,6 +8,7 @@
 #' @param departure_from search flights from this datetime. If `NULL`, anytime.
 #' @param departure_to search flights up to this datetime. If `NULL`, anytime.
 #' @param sort_by one of "POPULARITY", "PRICE", or "QUALITY".
+#' @param price_range a list with values `min` and/or `max`, setting the price ranges.
 #' @param passengers If `NULL`, it will use the default: `list(adults = 1, children = 0,`
 #'   `infants = 0, adultsHoldBags = 0, adultsHandBags = 0, childrenHoldBags = list(),`
 #'   `childrenHandBags = list())`.
@@ -20,8 +21,8 @@
 #' @export
 #'
 search_flights <- function(fly_from, fly_to = "anywhere", departure_from = NULL,
-                           departure_to = NULL, sort_by = "POPULARITY", passengers = NULL,
-                           cabin_class = NULL) {
+                           departure_to = NULL, sort_by = "POPULARITY", price_range = NULL,
+                           passengers = NULL, cabin_class = NULL) {
   if (is.null(passengers)) {
     passengers <- list(
       adults = 1, children = 0, infants = 0, adultsHoldBags = 0, adultsHandBags = 0,
@@ -75,6 +76,12 @@ search_flights <- function(fly_from, fly_to = "anywhere", departure_from = NULL,
       start = format(departure_from, "%Y-%m-%dT%H:%M:%S"),
       end = format(departure_to, "%Y-%m-%dT%H:%M:%S")
     )
+  }
+  if (!is.null(price_range$min)) {
+    body$variables$filter$price$start <- price_range$min
+  }
+  if (!is.null(price_range$max)) {
+    body$variables$filter$price$end <- price_range$max
   }
   flights <- RETRY(
     "POST",
