@@ -4,13 +4,15 @@
 \alias{find_location}
 \title{Get location ID depending on a query term.}
 \usage{
-find_location(term, location_types = c())
+find_location(term, location_types = c(), first = 20)
 }
 \arguments{
 \item{term}{searched term (for suggestions).}
 
 \item{location_types}{list of desired location output, accepted values:
 AIRPORT, AUTONOMOUS_TERRITORY, CITY, CONTINENT, COUNTRY, REGION, SUBDIVISION, TOURIST_REGION.}
+
+\item{first}{The number of results to return.}
 }
 \description{
 Get location ID depending on a query term using the Kiwi API.

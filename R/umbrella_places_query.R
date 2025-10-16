@@ -3,8 +3,9 @@ umbrella_places_query <- "
     $search: PlacesSearchInput
     $filter: PlacesFilterInput
     $options: PlacesOptionsInput
+    $first: Int!
   ) {
-    places(search: $search, filter: $filter, options: $options, first: 20) {
+    places(search: $search, filter: $filter, options: $options, first: $first) {
       __typename
       ... on AppError {
         error: message

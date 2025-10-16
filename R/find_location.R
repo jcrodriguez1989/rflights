@@ -5,6 +5,7 @@
 #' @param term searched term (for suggestions).
 #' @param location_types list of desired location output, accepted values:
 #'   AIRPORT, AUTONOMOUS_TERRITORY, CITY, CONTINENT, COUNTRY, REGION, SUBDIVISION, TOURIST_REGION.
+#' @param first The number of results to return.
 #'
 #' @importFrom httr content content_type_json RETRY
 #' @importFrom jsonlite toJSON
@@ -16,7 +17,7 @@
 #' cba_locs <- find_location("Cordoba", location_types = c("CITY", "REGION"))
 #' }
 #'
-find_location <- function(term, location_types = c()) {
+find_location <- function(term, location_types = c(), first = 20) {
   if (length(location_types) == 0) {
     location_types <- c(
       "AIRPORT", "AUTONOMOUS_TERRITORY", "CITY", "CONTINENT", "COUNTRY", "REGION", "SUBDIVISION",
@@ -28,7 +29,8 @@ find_location <- function(term, location_types = c()) {
     variables = list(
       search = list(term = term),
       filter = list(onlyTypes = location_types),
-      options = list(locale = "en")
+      options = list(locale = "en"),
+      first = first
     )
   )
   locations <- RETRY(
