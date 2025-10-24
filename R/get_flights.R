@@ -14,6 +14,7 @@
 #'   `childrenHandBags = list())`.
 #' @param cabin_class If `NULL`, it will use the default: `list(cabinClass = "ECONOMY",`
 #'   `applyMixedClasses = FALSE)`.
+#' @param max_stops_count Max number of flight stops (0 would be a direct flight).
 #'
 #' @importFrom httr content content_type_json RETRY
 #' @importFrom jsonlite toJSON
@@ -22,7 +23,7 @@
 #'
 get_flights <- function(fly_from, fly_to = "anywhere", departure_from = NULL,
                         departure_to = NULL, sort_by = "QUALITY", price_range = NULL,
-                        passengers = NULL, cabin_class = NULL) {
+                        passengers = NULL, cabin_class = NULL, max_stops_count = 10) {
   if (is.null(passengers)) {
     passengers <- list(
       adults = 1, children = 0, infants = 0, adultsHoldBags = 0, adultsHandBags = 0,
@@ -53,7 +54,8 @@ get_flights <- function(fly_from, fly_to = "anywhere", departure_from = NULL,
         transportTypes = c("FLIGHT"),
         contentProviders = c("KIWI", "FRESH", "KAYAK"),
         flightsApiLimit = 1000,
-        limit = 1000
+        limit = 1000,
+        maxStopsCount = max_stops_count
       ),
       conditions = FALSE,
       options = list(

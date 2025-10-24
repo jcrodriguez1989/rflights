@@ -12,7 +12,8 @@ get_flights(
   sort_by = "QUALITY",
   price_range = NULL,
   passengers = NULL,
-  cabin_class = NULL
+  cabin_class = NULL,
+  max_stops_count = 10
 )
 }
 \arguments{
@@ -35,6 +36,8 @@ get_flights(
 
 \item{cabin_class}{If `NULL`, it will use the default: `list(cabinClass = "ECONOMY",`
 `applyMixedClasses = FALSE)`.}
+
+\item{max_stops_count}{Max number of flight stops (0 would be a direct flight).}
 }
 \description{
 Query flight prices using the Kiwi API.
